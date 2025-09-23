@@ -77,6 +77,46 @@ void main()
 	vectorCEndNormalized.y *= magnitude(vectorAEnd) * 1 / num;
 	vectorCEndNormalized.z *= magnitude(vectorAEnd) * 1 / num;
 
+	//dibujado del suelo primer escalon
+	Vector3 base;
+	base = vectorAInit;
+
+	Vector3 conectorLA;
+	conectorLA.x = base.x + vectorAEnd.x;
+	conectorLA.y = base.y + vectorAEnd.y;
+	conectorLA.z = base.z + vectorAEnd.z;
+
+	Vector3 conectorLB;
+	conectorLB.x = base.x + vectorAEnd.x + vectorBEnd.x;
+	conectorLB.y = base.y + vectorAEnd.y + vectorBEnd.y;
+	conectorLB.z = base.z + vectorAEnd.z + vectorBEnd.z;
+
+	Vector3 conectorLC;
+	conectorLC.x = base.x + vectorBEnd.x;
+	conectorLC.y = base.y + vectorBEnd.y;
+	conectorLC.z = base.z + vectorBEnd.z;
+
+	//dibujado techo
+	Vector3 conectorR1;
+	conectorR1.x = base.x + vectorCEndNormalized.x;
+	conectorR1.y = base.y + vectorCEndNormalized.y;
+	conectorR1.z = base.z + vectorCEndNormalized.z;
+
+	Vector3 conectorR2;
+	conectorR2.x = conectorLA.x + vectorCEndNormalized.x;
+	conectorR2.y = conectorLA.y + vectorCEndNormalized.y;
+	conectorR2.z = conectorLA.z + vectorCEndNormalized.z;
+
+	Vector3 conectorR3;
+	conectorR3.x = conectorLB.x + vectorCEndNormalized.x;
+	conectorR3.y = conectorLB.y + vectorCEndNormalized.y;
+	conectorR3.z = conectorLB.z + vectorCEndNormalized.z;
+
+	Vector3 conectorR4;
+	conectorR4.x = conectorLC.x + vectorCEndNormalized.x;
+	conectorR4.y = conectorLC.y + vectorCEndNormalized.y;
+	conectorR4.z = conectorLC.z + vectorCEndNormalized.z;
+
 	SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
 	//--------------------------------------------------------------------------------------
 
@@ -94,7 +134,7 @@ void main()
 		//----------------------------------------------------------------------------------
 		BeginDrawing();
 
-		ClearBackground(RAYWHITE);
+		ClearBackground(BLACK);
 
 		BeginMode3D(camera);
 		DrawGrid(1000, 1.0f);
@@ -102,6 +142,15 @@ void main()
 		DrawLine3D(vectorAInit, vectorAEnd, RED); //Vector A
 		DrawLine3D(vectorBInit, vectorBEnd, GREEN); // Vector B
 		DrawLine3D(vectorCInit, vectorCEndNormalized, SKYBLUE); // Vector C
+		DrawLine3D(conectorLA, conectorLB, YELLOW); // Vector C
+		DrawLine3D(conectorLB, conectorLC, YELLOW); // Vector C
+		DrawLine3D(conectorR1, conectorR2, YELLOW); //Vector Techo 1
+		DrawLine3D(conectorR2, conectorR3, YELLOW); //Vector Techo 2
+		DrawLine3D(conectorR3, conectorR4, YELLOW); //Vector Techo 3
+		DrawLine3D(conectorR4, conectorR1, YELLOW); //Vector Techo 4
+		DrawLine3D(conectorLA, conectorR2, YELLOW); //Pilar 2
+		DrawLine3D(conectorLB, conectorR3, YELLOW); //Pilar 3
+		DrawLine3D(conectorLC, conectorR4, YELLOW); //Pilar 4
 
 		EndMode3D();
 
