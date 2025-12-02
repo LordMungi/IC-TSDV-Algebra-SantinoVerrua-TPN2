@@ -16,7 +16,10 @@
     <Filter Include="Program\Pyramid">
       <UniqueIdentifier>{7a121249-d3cd-489d-8428-dbe6ff7373aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Program\Pyramid\Line">
+    <Filter Include="Program\Pyramid\Step">
+      <UniqueIdentifier>{235c2f13-d595-4cc6-b35e-a3c40a562591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Program\Pyramid\Step\Line">
       <UniqueIdentifier>{29f33032-d858-4dd5-b8a8-aee628252f7e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -28,7 +31,10 @@
       <Filter>Program\Pyramid</Filter>
     </ClInclude>
     <ClInclude Include="src\line.h">
-      <Filter>Program\Pyramid\Line</Filter>
+      <Filter>Program\Pyramid\Step\Line</Filter>
+    </ClInclude>
+    <ClInclude Include="src\step.h">
+      <Filter>Program\Pyramid\Step</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -159,6 +159,7 @@
     <ClInclude Include="src\line.h" />
     <ClInclude Include="src\program.h" />
     <ClInclude Include="src\pyramid.h" />
+    <ClInclude Include="src\step.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

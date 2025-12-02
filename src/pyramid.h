@@ -1,13 +1,15 @@
 #pragma once
 #include <vector>
 
-#include "line.h"
+#include "step.h"
 
 class Pyramid
 {
 private:
 
-	std::vector<Line> lines;
+	std::vector<Step> steps;
+
+	void buildFirstStep(int max);
 
 public:
 
