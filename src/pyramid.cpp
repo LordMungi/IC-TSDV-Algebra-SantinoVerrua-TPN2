@@ -15,11 +15,10 @@ Pyramid::Pyramid(int n)
 void Pyramid::buildFirstStep(int n)
 {
 	const int max = 20;
-	Color color = MAGENTA;
 
 	Vector3 up = { 0, 1, 0 };
 
-	Step s1;
+	Step s;
 
 	Line l1;
 	l1.start = { 0,0,0 };
@@ -39,6 +38,20 @@ void Pyramid::buildFirstStep(int n)
 	if (Vector3DotProduct(l3.end, up) < 0)
 		l3.end = Vector3Negate(l3.end);
 	l3.color = GREEN;
+
+	s.lines[0] = l1;
+	s.lines[1] = l2;
+	s.lines[2] = l3;
+	steps.push_back(s);
+
+	finishStep(0);
+}
+
+void Pyramid::finishStep(int i)
+{
+	Line l1 = steps.at(i).lines[0];
+	Line l2 = steps.at(i).lines[1];
+	Line l3 = steps.at(i).lines[2];
 
 	Line l4;
 	l4.start = l1.end;
@@ -76,20 +89,15 @@ void Pyramid::buildFirstStep(int n)
 	l12.start = l8.end;
 	l12.end = Vector3Add(l2.end, l12.start);
 
-	s1.lines[0] = l1;
-	s1.lines[1] = l2;
-	s1.lines[2] = l3;
-	s1.lines[3] = l4;
-	s1.lines[4] = l5;
-	s1.lines[5] = l6;
-	s1.lines[6] = l7;
-	s1.lines[7] = l8;
-	s1.lines[8] = l9;
-	s1.lines[9] = l10;
-	s1.lines[10] = l11;
-	s1.lines[11] = l12;
-
-	steps.push_back(s1);
+	steps.at(i).lines[3] = l4;
+	steps.at(i).lines[4] = l5;
+	steps.at(i).lines[5] = l6;
+	steps.at(i).lines[6] = l7;
+	steps.at(i).lines[7] = l8;
+	steps.at(i).lines[8] = l9;
+	steps.at(i).lines[9] = l10;
+	steps.at(i).lines[10] = l11;
+	steps.at(i).lines[11] = l12;
 }
 
 void Pyramid::draw()
