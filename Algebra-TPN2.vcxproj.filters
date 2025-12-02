@@ -5,15 +5,30 @@
     <ClCompile Include="src\program.cpp">
       <Filter>Program</Filter>
     </ClCompile>
+    <ClCompile Include="src\pyramid.cpp">
+      <Filter>Program\Pyramid</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Program">
       <UniqueIdentifier>{6419b085-c149-400b-b8ca-d6188ef91bb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Program\Pyramid">
+      <UniqueIdentifier>{7a121249-d3cd-489d-8428-dbe6ff7373aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Program\Pyramid\Line">
+      <UniqueIdentifier>{29f33032-d858-4dd5-b8a8-aee628252f7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\program.h">
       <Filter>Program</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pyramid.h">
+      <Filter>Program\Pyramid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\line.h">
+      <Filter>Program\Pyramid\Line</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

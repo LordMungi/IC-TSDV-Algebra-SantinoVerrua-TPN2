@@ -153,9 +153,12 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\program.cpp" />
+    <ClCompile Include="src\pyramid.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\line.h" />
     <ClInclude Include="src\program.h" />
+    <ClInclude Include="src\pyramid.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

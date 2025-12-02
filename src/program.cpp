@@ -1,6 +1,6 @@
 #include "program.h"
 
-#include <raylib.h>
+#include "pyramid.h"
 
 namespace program
 {
@@ -9,7 +9,10 @@ namespace program
 	static void draw();
 	static void close();
 
+	const int n = 3;
+
 	Camera3D camera;
+	Pyramid pyramid(n);
 
 	void run()
 	{
@@ -49,6 +52,7 @@ namespace program
 		BeginMode3D(camera);
 
 		DrawGrid(10, 1);
+		pyramid.draw();
 
 		EndMode3D();
 
