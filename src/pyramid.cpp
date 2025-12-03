@@ -10,7 +10,11 @@ Pyramid::Pyramid(int n)
 	srand(static_cast<unsigned int>(time(0)));
 
 	buildFirstStep(n);
-	buildStep(n);
+	buildSteps(n);
+	originalSteps = steps.size();
+
+	for (int i = 0; i < n; i++)
+		invert();
 }
 
 void Pyramid::buildFirstStep(int n)
@@ -44,7 +48,7 @@ void Pyramid::buildFirstStep(int n)
 	finishStep();
 }
 
-void Pyramid::buildStep(int n)
+void Pyramid::buildSteps(int n)
 {
 	float x = static_cast<float>(n);
 
@@ -79,10 +83,8 @@ void Pyramid::buildStep(int n)
 	finishStep();
 
 	if (Vector3Length(Vector3Subtract(s.lines[0].end, s.lines[0].start)) > n)
-		buildStep(n);
+		buildSteps(n);
 }
-
-
 
 void Pyramid::finishStep()
 {
@@ -135,6 +137,36 @@ void Pyramid::finishStep()
 	steps.back().lines[9] = l10;
 	steps.back().lines[10] = l11;
 	steps.back().lines[11] = l12;
+}
+
+void Pyramid::invert()
+{
+	int lastStep = steps.size();
+	for (int i = 1; i < originalSteps; i++)
+	{
+		Step s = steps.at(lastStep - i - 1);
+
+		for (int j = 0; j < i*2; j++)
+		{
+			s.lines[0].start = Vector3Add(s.lines[0].start, steps.at(0).lines[2].end);
+			s.lines[0].end = Vector3Add(s.lines[0].end, steps.at(0).lines[2].end);
+			s.lines[1].start = Vector3Add(s.lines[1].start, steps.at(0).lines[2].end);
+			s.lines[1].end = Vector3Add(s.lines[1].end, steps.at(0).lines[2].end);
+			s.lines[2].start = Vector3Add(s.lines[2].start, steps.at(0).lines[2].end);
+			s.lines[2].end = Vector3Add(s.lines[2].end, steps.at(0).lines[2].end);
+		}
+		steps.push_back(s);
+		finishStep();
+
+		for (int j = 0; j < 12; j++)
+		{
+			steps.back().lines[j].color = color;
+		}
+	}
+	if (color.b == BLUE.b)
+		color = MAGENTA;
+	else
+		color = BLUE;
 }
 
 void Pyramid::draw()
