@@ -15,7 +15,7 @@ Pyramid::Pyramid(int n)
 
 void Pyramid::buildFirstStep(int n)
 {
-	const int max = 20;
+	const int max = 30;
 
 	Vector3 up = { 0, 1, 0 };
 
@@ -55,7 +55,7 @@ void Pyramid::buildStep(int n)
 	l1.start = Vector3Scale(Vector3Normalize(l1.start), x / 2);
 	l1.start = Vector3Add(l1.start, Vector3Scale(Vector3Normalize(Vector3Subtract(s.lines[1].end, s.lines[1].start)), x / 2));
 	l1.start = Vector3Add(l1.start, s.lines[0].start);
-	l1.start = Vector3Add(l1.start, s.lines[2].end);
+	l1.start = Vector3Add(l1.start, Vector3Subtract(s.lines[2].end, s.lines[2].start));
 
 	l1.end = Vector3Subtract(s.lines[0].end, s.lines[0].start);
 	l1.end = Vector3Scale(Vector3Normalize(l1.end), Vector3Length(l1.end) - x);
@@ -77,6 +77,9 @@ void Pyramid::buildStep(int n)
 	steps.push_back(s);
 
 	finishStep();
+
+	if (Vector3Length(Vector3Subtract(s.lines[0].end, s.lines[0].start)) > n)
+		buildStep(n);
 }
 
 
