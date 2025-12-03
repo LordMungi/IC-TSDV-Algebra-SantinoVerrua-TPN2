@@ -56,6 +56,8 @@ namespace program
 
 		EndMode3D();
 
+		pyramid.drawStats();
+
 		EndDrawing();
 	}
 

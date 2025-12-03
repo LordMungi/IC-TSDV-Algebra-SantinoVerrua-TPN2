@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <ctime>
+#include <string>
 
 #include <raymath.h>
 
@@ -15,6 +16,8 @@ Pyramid::Pyramid(int n)
 
 	for (int i = 0; i < n; i++)
 		invert();
+
+	calculateStats();
 }
 
 void Pyramid::buildFirstStep(int n)
@@ -169,9 +172,26 @@ void Pyramid::invert()
 		color = BLUE;
 }
 
+void Pyramid::calculateStats()
+{
+	for (int i = 0; i < steps.size(); i++)
+	{
+		Vector3 v1 = Vector3Subtract(steps.at(i).lines[0].end, steps.at(i).lines[0].start);
+		Vector3 v2 = Vector3Subtract(steps.at(i).lines[1].end, steps.at(i).lines[1].start);
+		Vector3 v3 = Vector3Subtract(steps.at(i).lines[2].end, steps.at(i).lines[2].start);
+
+		perimeter += (Vector3Length(v1) * 2 + Vector3Length(v2) * 2) * 2;
+		perimeter += (Vector3Length(v1) * 2 + Vector3Length(v3) * 2) * 4;
+
+		area += (Vector3Length(v1) * Vector3Length(v2)) * 2;
+		area += (Vector3Length(v1) * Vector3Length(v3)) * 4;
+
+		volume += Vector3Length(v1) * Vector3Length(v2) * Vector3Length(v3);
+	}
+}
+
 void Pyramid::draw()
 {
-
 	for (int i = 0; i < steps.size(); i++)
 	{
 		for (int j = 0; j < 12; j++)
@@ -179,4 +199,15 @@ void Pyramid::draw()
 			DrawLine3D(steps.at(i).lines[j].start, steps.at(i).lines[j].end, steps.at(i).lines[j].color);
 		}
 	}
+}
+
+void Pyramid::drawStats()
+{
+	DrawText("Perimeter:", 10, 10, 20, BLACK);
+	DrawText("Area:", 10, 30, 20, BLACK);
+	DrawText("Volume:", 10, 50, 20, BLACK);
+
+	DrawText(std::to_string(perimeter).c_str(), 150, 10, 20, BLACK);
+	DrawText(std::to_string(area).c_str(), 150, 30, 20, BLACK);
+	DrawText(std::to_string(volume).c_str(), 150, 50, 20, BLACK);
 }
