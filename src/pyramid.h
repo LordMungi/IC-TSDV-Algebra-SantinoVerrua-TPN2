@@ -9,8 +9,9 @@ private:
 
 	std::vector<Step> steps;
 
-	void buildFirstStep(int max);
-	void finishStep(int stepIndex);
+	void buildFirstStep(int n);
+	void buildStep(int n);
+	void finishStep();
 
 public:
 

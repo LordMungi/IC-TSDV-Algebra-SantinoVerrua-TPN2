@@ -9,7 +9,7 @@ namespace program
 	static void draw();
 	static void close();
 
-	const int n = 2;
+	const int n = 5;
 
 	Camera3D camera;
 	Pyramid pyramid(n);
